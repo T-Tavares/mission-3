@@ -1,11 +1,15 @@
-/* 
-    Links
+// ----------------------- REFERENCE LINKS ------------------------ //
 
+/* 
     https://cloud.google.com/functions/docs/console-quickstart
     https://www.youtube.com/watch?v=5ScNKhR_gWY
+    https://www.youtube.com/watch?v=I0vJDmw6P4c
     https://github.com/google-github-actions/deploy-cloud-functions/tree/main
     https://github.com/google-github-actions/auth
+
 */
+
+// --------------------- CONTROLLERS IMPORTS ---------------------- //
 
 const {
     getCarValue,
@@ -15,9 +19,15 @@ const {
     getMultipleInsuranceReputes,
 } = require('./src/controllers/controllers.js');
 
-const app = require('express')();
+// -------------------- SERVER AND MIDDLEWARE --------------------- //
 
-app.get('/', (_, res) => res.send('app is up bb!'));
+const app = require('express')();
+const cors = require('cors');
+app.use(cors());
+
+// ------------------------- ROUTES SETUP ------------------------- //
+
+app.get('/', (_, res) => res.send(`Serber is up and runnming`));
 app.post('/get-car-value', (req, res) => res.send(getCarValue(req.body)));
 app.post('/get-risk-rating', (req, res) => res.send(getRiskRating(req.body)));
 app.post('/get-insurance-quote', (req, res) => res.send(getInsuranceQuote(req.body)));

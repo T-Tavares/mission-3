@@ -5,8 +5,8 @@
     "main": "index.js",
     "scripts": {
         "localGFunc": "npx functions-framework --target=turnersAPI",
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "inlineDeploy": "gcloud functions deploy turnersAPI --entry-point turnersAPI --runtime nodejs20 --trigger-http --project tavares-mission-3"
+        "inlineDeploy": "gcloud functions deploy turnersAPI --entry-point turnersAPI --runtime nodejs20 --trigger-http --project tavares-mission-3",
+        "forcePush": "git add .\ngit commit --amend --no-edit\n git push -f"
     },
     "author": "",
     "license": "ISC",
@@ -14,6 +14,7 @@
         "@google-cloud/functions-framework": "^3.3.0"
     },
     "dependencies": {
+        "cors": "^2.8.5",
         "express": "^4.18.3"
     }
 }

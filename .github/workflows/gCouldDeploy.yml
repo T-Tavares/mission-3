@@ -14,12 +14,20 @@ jobs:
             - name: Checkout Repository
               uses: actions/checkout@v2
 
-            - name: Set up Google Cloud SDK
-              uses: google-github-actions/setup-gcloud@master
+            - name: Authenticate to Google Cloud
+              uses: 'google-github-actions/auth@v2'
               with:
-                  service_account_key: ${{ secrets.GCP_SA_KEY }}
+                  credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+            - name: Set up Google Cloud SDK
+              uses: google-github-actions/setup-gcloud@v2
+              with:
                   project_id: tavares-mission-3
 
             - name: Deploy Cloud Functions
               run: |
-                  gcloud functions deploy turnersAPI --entry-point turnersAPI --runtime nodejs20 --trigger-http --project tavares-mission-3
+                  gcloud functions deploy turnersAPI \
+                  --entry-point turnersAPI \
+                  --runtime nodejs20 \
+                  --trigger-http \
+                  --project tavares-mission-3
