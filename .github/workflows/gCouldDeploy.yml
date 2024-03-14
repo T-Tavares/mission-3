@@ -1,0 +1,25 @@
+name: TurnersAPI - Cloud Functions Deploy
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    deploy:
+        name: Deploy to Google Cloud Functions
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v2
+
+            - name: Set up Google Cloud SDK
+              uses: google-github-actions/setup-gcloud@master
+              with:
+                  service_account_key: ${{ secrets.GCP_SA_KEY }}
+                  project_id: tavares-mission-3
+
+            - name: Deploy Cloud Functions
+              run: |
+                  gcloud functions deploy turnersAPI --entry-point turnersAPI --runtime nodejs20 --trigger-http --project tavares-mission-3

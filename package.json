@@ -1,0 +1,19 @@
+{
+    "name": "mission-3",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "localGFunc": "npx functions-framework --target=turnersAPI",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "inlineDeploy": "gcloud functions deploy turnersAPI --entry-point turnersAPI --runtime nodejs20 --trigger-http --project tavares-mission-3"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@google-cloud/functions-framework": "^3.3.0"
+    },
+    "dependencies": {
+        "express": "^4.18.3"
+    }
+}
