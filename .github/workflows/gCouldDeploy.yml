@@ -4,6 +4,11 @@ on:
     push:
         branches:
             - main
+        paths:
+            - index.js
+            - src/controllers/controllers.js
+            - src/test/test.spec.js
+            - .github/workflows/gCloudDeploy.yml
 
 jobs:
     deploy:
@@ -31,3 +36,15 @@ jobs:
                   --runtime nodejs20 \
                   --trigger-http \
                   --project tavares-mission-3
+
+    unit-test:
+        name: Run Tests
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: '18'
+            - run: npm install
+            - run: npm test
